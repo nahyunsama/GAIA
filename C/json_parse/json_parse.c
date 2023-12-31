@@ -12,7 +12,7 @@ int main()
         printf("READ JSON FILE ERROR");
         return EXIT_FAILURE;
     }
-    
+
     char *json_string = NULL;
     size_t json_size = 0;
 
@@ -45,5 +45,46 @@ int main()
     } 
     fclose(fp);
     printf("%s", json_string);
+    printf("------------\n");
+
+    cJSON *cursor = NULL;
+    cJSON *servlet = NULL;
+    cJSON *cacheTemplatesTrack = NULL;
+    cJSON *root = cJSON_Parse(json_string);
+    int i;
+    int array_size;
+    if (root == NULL) {
+        printf("JSON PARSE FAIL");
+        exit(1);
+    }
+    
+    cursor = cJSON_GetObjectItem(root, "web-app");
+    if (cursor == NULL) {
+        printf("CURSOR is NULL");
+        exit(1);
+    }
+    servlet = cJSON_GetObjectItem(cursor, "servlet"); //NULL CHECK
+    if (servlet == NULL) {
+        printf("servlet is NULL");
+        exit(1);
+    }
+    // servlet typecheck
+    array_size = cJSON_GetArraySize(servlet);
+    for (i = 0; i < array_size; i++) {
+        cursor = cJSON_GetArrayItem(servlet, i); // NULL CHECK
+        //if(cursor == NULL)
+        cursor = cJSON_GetObjectItem(cursor, "init-param"); //NULL CHECK
+        //if (cursor == NULL)
+        if (cursor != NULL) {
+            cacheTemplatesTrack = cJSON_GetObjectItem(cursor, "cacheTemplatesTrack");
+            if (cacheTemplatesTrack != NULL) {
+                char *output = cJSON_Print(cacheTemplatesTrack);
+                printf("cacheTemplatesTrack : %s\n", output);
+                free(output);
+            }
+        }
+    }
+    //cJSON_Delete()
+    
     return 0;
 }
