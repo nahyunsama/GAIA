@@ -63,18 +63,23 @@ int main()
         printf("CURSOR is NULL");
         exit(1);
     }
-    servlet = cJSON_GetObjectItem(cursor, "servlet"); //NULL CHECK
+    servlet = cJSON_GetObjectItem(cursor, "servlet");
     if (servlet == NULL) {
         printf("servlet is NULL");
         exit(1);
     }
-    // servlet typecheck
     array_size = cJSON_GetArraySize(servlet);
     for (i = 0; i < array_size; i++) {
-        cursor = cJSON_GetArrayItem(servlet, i); // NULL CHECK
-        //if(cursor == NULL)
-        cursor = cJSON_GetObjectItem(cursor, "init-param"); //NULL CHECK
-        //if (cursor == NULL)
+        cursor = cJSON_GetArrayItem(servlet, i);
+        if(cursor == NULL) {
+            printf("cursor is NULL");
+            exit(1);
+        }
+        cursor = cJSON_GetObjectItem(cursor, "init-param");
+        if (cursor == NULL) {
+            printf("cursor is NULL");
+            exit(1);
+        }
         if (cursor != NULL) {
             cacheTemplatesTrack = cJSON_GetObjectItem(cursor, "cacheTemplatesTrack");
             if (cacheTemplatesTrack != NULL) {
@@ -84,7 +89,9 @@ int main()
             }
         }
     }
-    //cJSON_Delete()
+    cJSON_Delete(root);
+    cJSON_Delete(cursor);
+    cJSON_Delete(servlet);
     
     return 0;
 }
