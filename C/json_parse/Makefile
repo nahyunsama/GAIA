@@ -1,7 +1,7 @@
 # Makefile 예제
 
 # 컴파일러 설정
-CC=gcc
+#CC=gcc
 CFLAGS=-Wall -O2
 
 # 타겟과 의존성 정의
