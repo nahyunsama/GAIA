@@ -19,7 +19,7 @@ void json_parse(char *json_string)
     
     cursor = cJSON_GetObjectItem(root, "web-app");
     if (cursor == NULL) {
-        printf("CURSOR is NULL");
+        printf("cursor is NULL");
         exit(2);
     }
     servlet = cJSON_GetObjectItem(cursor, "servlet");
@@ -45,6 +45,7 @@ void json_parse(char *json_string)
                 char *output = cJSON_Print(cacheTemplatesTrack);
                 printf("cacheTemplatesTrack : %s\n", output);
                 free(output);
+                exit(0);
             }
         }
     }
