@@ -20,24 +20,24 @@ void json_parse(char *json_string)
     cursor = cJSON_GetObjectItem(root, "web-app");
     if (cursor == NULL) {
         printf("CURSOR is NULL");
-        exit(1);
+        exit(2);
     }
     servlet = cJSON_GetObjectItem(cursor, "servlet");
     if (servlet == NULL) {
         printf("servlet is NULL");
-        exit(1);
+        exit(3);
     }
     array_size = cJSON_GetArraySize(servlet);
     for (i = 0; i < array_size; i++) {
         cursor = cJSON_GetArrayItem(servlet, i);
         if(cursor == NULL) {
             printf("cursor is NULL");
-            exit(1);
+            exit(4);
         }
         cursor = cJSON_GetObjectItem(cursor, "init-param");
         if (cursor == NULL) {
             printf("cursor is NULL");
-            exit(1);
+            exit(5);
         }
         if (cursor != NULL) {
             cacheTemplatesTrack = cJSON_GetObjectItem(cursor, "cacheTemplatesTrack");
