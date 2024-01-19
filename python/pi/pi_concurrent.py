@@ -1,6 +1,6 @@
 # machin formula
 # signma k=1 k=X {(16(-1)^(k-1))/(2k-1) * (1/5)^(2k-1) - 4(-1)^(k-1))/(2k-1) * (1/239)^(2k-1)} = pi/4
-# 1000 개씩 result 와 i 값을 저장해서 일시 중단 가능하게 만들기
+# 1000 개씩 result 와 i 값을 저장해서 일시 중단 가능하게 만들기 + timestamp
 # windows docker command : docker run -v ${PWD}:/mnt --rm -it python:3 python3 /mnt/pi_concurrent.py
 
 from decimal import Decimal, getcontext
@@ -8,7 +8,7 @@ from concurrent.futures import ProcessPoolExecutor
 from functools import reduce
 import re
 
-REPEAT = 200000
+REPEAT = 50000
 getcontext().prec=REPEAT
 
 def cal_pi(i):
