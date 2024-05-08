@@ -7,7 +7,7 @@ int main() {
     srand((unsigned int)time(NULL));
     int tmp;
     int val;
-    int i, j;
+    int j;
     
     for (int i = 0; i < 100; i++) {
         rand_array[i] = rand();
