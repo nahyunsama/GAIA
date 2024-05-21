@@ -3,6 +3,8 @@
 #include <time.h>
 
 int main() {
+    clock_t start = clock();
+    
     int rand_array[100];
     srand((unsigned int)time(NULL));
     int tmp;
@@ -12,7 +14,6 @@ int main() {
     for (int i = 0; i < 100; i++) {
         rand_array[i] = rand();
     }
-    clock_t start = clock();
     
     for (int i = 1; i < 100; i++) {
         val = rand_array[i];
@@ -22,10 +23,13 @@ int main() {
         rand_array[j] = val;
     }
     
-    clock_t end = clock();
+    
     for (int i = 0; i < 100; i++) {
         printf("%d\n", rand_array[i]);
     }
+
+    clock_t end = clock();
+    
     printf("WORK TIME : %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
     return 0;
 }
