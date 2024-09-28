@@ -16,4 +16,4 @@ cJSON.o: cJSON.c cJSON.h
 
 # 정리 작업
 clean:
-	rm -f *.o example_json_parse
+	rm -f *.o example_json_parse *.gch
