@@ -1,4 +1,0 @@
-1. nodejs 로 JS 해보기
-2. flask 프레임워크로 뭔가 만들어보기
-3. python 으로 http 1.0 서버 만들어보기 (index.html, index.css, index.js, keepalive off)
-4. 계속 로우하게 구현해보기
